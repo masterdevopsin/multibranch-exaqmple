@@ -6,6 +6,7 @@ pipeline {
 			steps {
 				echo " stage1 of QA branch"
 				echo "hi "
+				echo "added line 3"
 			}
 		}	
 	}
