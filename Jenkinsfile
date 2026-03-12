@@ -5,7 +5,7 @@ pipeline {
 		stage ('STAGE!: QA') {
 			steps {
 				echo " stage1 of QA branch"
-
+				echo "hi "
 			}
 		}	
 	}
