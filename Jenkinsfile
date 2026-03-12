@@ -4,7 +4,7 @@ pipeline {
 	stages {
 		stage ('STAGE!: QA') {
 			steps {
-				echo " stage1 of QA branch'
+				echo " stage1 of QA branch"
 
 			}
 		}	
