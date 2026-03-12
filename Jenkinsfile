@@ -6,7 +6,7 @@ pipeline {
 			steps {
 				echo " stage1 of main branch"
 				echo "added line 2"
-				echo :add line 3"
+				echo "add line 3"
 			}
 		}	
 	}
