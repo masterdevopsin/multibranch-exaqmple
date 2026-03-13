@@ -13,7 +13,7 @@ pipeline {
             }
             steps {
                 echo "Running DEV build"
-                echo "edit"
+                
             }
         }
 
