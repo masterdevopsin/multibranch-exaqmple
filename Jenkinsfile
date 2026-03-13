@@ -1,11 +1,15 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'BRANCH', defaultValue: 'dev', description: 'Branch Name')
+    }
+
     stages {
 
         stage('Build - Dev') {
             when {
-                branch 'dev'
+                expression { params.BRANCH == 'dev' }
             }
             steps {
                 echo "Running DEV build"
@@ -14,7 +18,7 @@ pipeline {
 
         stage('Test - QA') {
             when {
-                branch 'qa'
+                expression { params.BRANCH == 'qa' }
             }
             steps {
                 echo "Running QA tests"
@@ -23,7 +27,7 @@ pipeline {
 
         stage('Deploy - Main') {
             when {
-                branch 'main'
+                expression { params.BRANCH == 'main' }
             }
             steps {
                 echo "Deploying to Production"
