@@ -1,25 +1,26 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'BRANCH', defaultValue: 'dev', description: 'Branch Name')
-    }
-
     stages {
+
+        stage('Debug Branch') {
+            steps {
+                echo "Current Git Branch: ${env.GIT_BRANCH}"
+            }
+        }
 
         stage('Build - Dev') {
             when {
-                expression { params.BRANCH == 'dev' }
+                expression { env.GIT_BRANCH == 'origin/dev' }
             }
             steps {
                 echo "Running DEV build"
-                echo "edit"
             }
         }
 
         stage('Test - QA') {
             when {
-                expression { params.BRANCH == 'qa' }
+                expression { env.GIT_BRANCH == 'origin/qa' }
             }
             steps {
                 echo "Running QA tests"
@@ -28,7 +29,7 @@ pipeline {
 
         stage('Deploy - Main') {
             when {
-                expression { params.BRANCH == 'main' }
+                expression { env.GIT_BRANCH == 'origin/main' }
             }
             steps {
                 echo "Deploying to Production"
