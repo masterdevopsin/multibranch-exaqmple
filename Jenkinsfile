@@ -3,9 +3,15 @@ pipeline {
 
     stages {
 
+        stage('Debug Branch') {
+            steps {
+                echo "Current Git Branch: ${env.GIT_BRANCH}"
+            }
+        }
+
         stage('Build - Dev') {
             when {
-                branch 'dev'
+                expression { env.GIT_BRANCH == 'origin/dev' }
             }
             steps {
                 echo "Running DEV build"
@@ -14,17 +20,16 @@ pipeline {
 
         stage('Test - QA') {
             when {
-                branch 'qa'
+                expression { env.GIT_BRANCH == 'origin/qa' }
             }
             steps {
                 echo "Running QA tests"
-                echo "edit"
             }
         }
 
         stage('Deploy - Main') {
             when {
-                branch 'main'
+                expression { env.GIT_BRANCH == 'origin/main' }
             }
             steps {
                 echo "Deploying to Production"
