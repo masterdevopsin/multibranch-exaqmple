@@ -18,6 +18,7 @@ pipeline {
             }
             steps {
                 echo "Running QA tests"
+                echo "edit"
             }
         }
 
