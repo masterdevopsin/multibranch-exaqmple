@@ -1,13 +1,34 @@
 pipeline {
-	agent any
-	
-	stages {
-		stage ('STAGE!: QA') {
-			steps {
-				echo " stage1 of QA branch"
-				echo "hi "
-				echo "added line 3"
-			}
-		}	
-	}
+    agent any
+
+    stages {
+
+        stage('Build - Dev') {
+            when {
+                branch 'dev'
+            }
+            steps {
+                echo "Running DEV build"
+            }
+        }
+
+        stage('Test - QA') {
+            when {
+                branch 'qa'
+            }
+            steps {
+                echo "Running QA tests"
+            }
+        }
+
+        stage('Deploy - Main') {
+            when {
+                branch 'main'
+            }
+            steps {
+                echo "Deploying to Production"
+            }
+        }
+
+    }
 }
